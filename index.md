@@ -1,37 +1,123 @@
-## Welcome to GitHub Pages
+# URL_Shortener - smolink
 
-You can use the [editor on GitHub](https://github.com/ksh168/smolink-url_shortener/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+This project was born out of my curiosity for how URL Shorteners work.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This is a simple **URL shortener** in Flask.
 
-### Markdown
+Shortens URL upto length 512 characters to 6 characters.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Made using Flask-SQLAlchemy. This URL shortener will be able to redirect links and keep stats on the number of times each link was visited.
 
-```markdown
-Syntax highlighted code block
+Also has **[HTTP Basic Authentication](https://web.archive.org/web/20190128010144/http://flask.pocoo.org/snippets/8/)** to view stats.
 
-# Header 1
-## Header 2
-### Header 3
+**All this data will be stored in a [sqlite3](https://www.sqlite.org/index.html) database**
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
+* **"link" Table in the Database**
+<img src="https://github.com/ksh168/url_shortener/blob/master/link%20table.png" width="50%" height="50%">
 
-**Bold** and _Italic_ and `Code` text
 
-[Link](url) and ![Image](src)
-```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
+# User Interface
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ksh168/smolink-url_shortener/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+* **Index page**
+<img src="https://raw.githubusercontent.com/ksh168/url_shortener/master/screenshots/Index.png">
 
-### Support or Contact
+* **Short URL generated**
+<img src="https://raw.githubusercontent.com/ksh168/url_shortener/master/screenshots/short%20url%20generated.png">
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+* **Statistics (Needs HTTP Authentication)**
+<img src="https://raw.githubusercontent.com/ksh168/url_shortener/master/screenshots/stats.png">
+
+
+
+
+
+
+
+# Steps:
+
+Always recommended to create a virtual environment
+
+* Creates **virtual environment** and install flask
+
+	```pipenv install flask```
+
+* To **start shell** and enter the venv
+
+	```pipenv shell```
+
+* **Dependencies:**
+
+	```pipenv install python-dotenv```
+
+	```pipenv install sql-alchemy```
+
+* To **run the app**
+
+	```flask run```
+
+
+# Now to create the database
+1. Start python in terminal
+
+	```python```
+
+2.
+	```python
+		from url_shortener import create_app
+	```
+
+3.
+	```python
+		from url_shortener.extensions import db
+	```
+
+4.
+	```python
+		from url_shortener.models import Link
+	```
+
+5. **To create tables and database**
+
+	```python
+		db.create_all(app = create_app())
+	```
+
+6. To exit python console
+
+	```python
+		exit()
+	```
+
+
+* To **view database**, write in terminal
+
+	`sqlite3 url_shortener/db.sqlite3`
+
+* To **see the table names** in database
+
+	```sql
+		.tables
+	```
+
+
+* To **query the database**
+
+	```sql
+	SELECT * FROM link
+	```
+
+* To exit sqlite3
+
+	```sql
+		.exit
+	```
+
+
+
+
+
+
+This project was made using **[GitHub Codespaces Beta](https://github.com/features/codespaces)**. Thanks to them for providing me early access to their such beautiful and useful feature.
