@@ -1,0 +1,19 @@
+#ignore virtual envs
+env/
+venv/
+
+#ignore env files and secrets
+.env
+.venv
+
+#ignore database files
+*.sqlite3
+*.db
+
+#ignore ide files
+.vscode/
+
+#ignore python build and cache files
+__pycache__/
+*.py[cod]
+*$py.class
